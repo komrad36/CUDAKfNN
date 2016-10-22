@@ -1,0 +1,7 @@
+*
+!.gitignore
+!CUDAKfNN.h
+!CUDAKfNN.cu
+!Makefile
+!main.cpp
+!README.md
