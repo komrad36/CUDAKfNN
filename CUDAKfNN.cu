@@ -57,8 +57,8 @@ CUDAKfNN_kernel(const cudaTextureObject_t tex_q, const int num_q, const cudaText
 			tmp = q[i].z - train.z;
 			dist[i] = fmaf(tmp, tmp, dist[i]);
 		}
-		for (int i = 0; i < 4; ++i) dist[i] += __shfl_xor(dist[i], 1);
 		train = tex1Dfetch<float4>(tex_t, ofs_t);
+		for (int i = 0; i < 4; ++i) dist[i] += __shfl_xor(dist[i], 1);
 		if (threadIdx.x & 1) dist[0] = dist[1];
 		dist[0] += __shfl_xor(dist[0], 2);
 		if (threadIdx.x & 1) dist[2] = dist[3];
